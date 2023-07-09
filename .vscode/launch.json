@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run BookMyLunchClient",
+            "type": "blazorwasm",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "browser": "chrome"
+        }
+    ]
+}
