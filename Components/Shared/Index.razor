@@ -1,0 +1,42 @@
+@page "/"
+@inject NavigationManager NavigationManager
+
+@if (IsAuthorized())
+{
+    switch (GetRole())
+    {
+        case UserRole.Client:
+            NavigationManager.NavigateTo("/clienthome");
+            break;
+        case UserRole.Host:
+            NavigationManager.NavigateTo("/hosthome");
+            break;
+        case UserRole.Observer:
+            NavigationManager.NavigateTo("/observerhome");
+            break;
+        default:
+            NavigationManager.NavigateTo("/login");
+            break;
+    }
+}
+else
+{
+    NavigationManager.NavigateTo("/login");
+}
+
+@code{
+
+    private enum UserRole{
+        Client,
+        Host,
+        Observer
+    }
+
+    private UserRole GetRole(){
+        return UserRole.Client;
+    }
+
+    private bool IsAuthorized(){
+        return false;
+    }
+}
