@@ -1,42 +1,12 @@
 @page "/"
-@inject NavigationManager NavigationManager
+@inject UserService UserService
 
-@if (IsAuthorized())
+// index code
+@code
 {
-    switch (GetRole())
+    protected override void OnInitialized()
     {
-        case UserRole.Client:
-            NavigationManager.NavigateTo("/clienthome");
-            break;
-        case UserRole.Host:
-            NavigationManager.NavigateTo("/hosthome");
-            break;
-        case UserRole.Observer:
-            NavigationManager.NavigateTo("/observerhome");
-            break;
-        default:
-            NavigationManager.NavigateTo("/login");
-            break;
-    }
-}
-else
-{
-    NavigationManager.NavigateTo("/login");
-}
-
-@code{
-
-    private enum UserRole{
-        Client,
-        Host,
-        Observer
-    }
-
-    private UserRole GetRole(){
-        return UserRole.Client;
-    }
-
-    private bool IsAuthorized(){
-        return false;
+        // Call the InitialNavigate() method here
+        UserService.InitialNavigate();
     }
 }

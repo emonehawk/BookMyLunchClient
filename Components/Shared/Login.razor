@@ -1,46 +1,53 @@
 @page "/login"
+@inject LoginModel LoginModel
+@inject SystemNotifyService SystemNotifyService
+@inject NavigationManager NavigationManager
+@inject UserService UserService
 
+// login design
 <div Class="rz-p-0 rz-p-md-12">
     <RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 420px">
         <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.End" JustifyContent="JustifyContent.Center" Wrap="FlexWrap.Wrap" Gap="1rem" Class="rz-p-sm-12">
             <RadzenFormField Text="Account" Variant="@variant">
                 <Start>
-                    <RadzenIcon Icon="account_circle" />
                 </Start>
                 <ChildContent>
-                    <RadzenTextBox @bind-Value="@userName" />
+                    <RadzenTextBox @bind-Value="@LoginModel.UserName" />
                 </ChildContent>
                 <End>
+                    <RadzenIcon Icon="account_circle" />
                 </End>
             </RadzenFormField>
             <RadzenFormField Text="Password" Variant="@variant">
                 <Start>
                 </Start>
                 <ChildContent>
-                    <RadzenTextBox @bind-Value="@password" Visible="@(!passwordState)" />
-                    <RadzenPassword @bind-Value="@password" Visible="@passwordState" />
+                    <RadzenTextBox @bind-Value="@LoginModel.Password" Visible="@(!passwordState)" />
+                    <RadzenPassword @bind-Value="@LoginModel.Password" Visible="@passwordState" />
                 </ChildContent>
                 <End>
                     <RadzenButton Icon="@(passwordState ? "visibility" : "visibility_off")" Click="TogglePassword" Variant="Variant.Text" Size="ButtonSize.Small" />
                 </End>
             </RadzenFormField>
-            <div>
-                <div style="font-size: .8em">@createAccount</div>
+            <div class="rz-p-12 rz-text-align-center">
+                If you are new
+                <RadzenLink Path="Create" Text="create" />
+                account
             </div>
             <div class="rz-p-12 rz-text-align-center">
-                <RadzenButton Text="Submit" Click="@Submit" class="rz-ripple"/>
+                <RadzenButton Text="Submit" Click="@Submit" class="rz-ripple" />
             </div>
         </RadzenStack>
     </RadzenCard>
 </div>
 
-@code {
-    string createAccount = "If you are new to this create account";
-    string userName = "";  // Consider renaming to 'username'
-    string password = "";
+// login ode
+@code 
+{
     bool passwordState = true;
     Variant variant = Variant.Outlined;
 
+    // action while toggling password
     void TogglePassword()
     {
         passwordState = !passwordState;
@@ -48,16 +55,17 @@
 
     void Submit()
     {
-        // Implement your authentication logic here
-        // For example:
-        if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password))
+        if (string.IsNullOrWhiteSpace(LoginModel.UserName) || string.IsNullOrWhiteSpace(LoginModel.Password))
         {
+            string summary = "Input Error";
+            string detail = "Please input username/password correctily";
             // Show error: Both fields are required
+            SystemNotifyService.ShowErrorNotification(summary, detail);
         }
         else
         {
+            UserService.InitialNavigate();
             // Authenticate the user
-
         }
     }
 }

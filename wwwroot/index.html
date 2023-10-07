@@ -1,34 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>BookMyLunchClient</title>
-    <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <link href="BookMyLunchClient.styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="_content/Radzen.Blazor/css/default-base.css">
-    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Book My Lunch</title>
+        <base href="/" />
+        <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/app.css" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="favicon.png" />
+        <link rel="stylesheet" href="_content/Radzen.Blazor/css/default-base.css">
+        <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+    </head>
 
-<body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
+    <body>
+        <RadzenLayout style="height: 300px">
+            <RadzenHeader>
+                <div>
+                    // headers here
+                </div>
+            </RadzenHeader>
+            <RadzenBody>
+                <div class="rz-p-0 rz-p-md-12">
+                    <div id="app" Class="rz-my-12 rz-mx-auto">
+                        <svg class="loading-progress">
+                            <circle r="40%" cx="50%" cy="50%" />
+                            <circle r="40%" cx="50%" cy="50%" />
+                        </svg>
+                        <div class="loading-progress-text"></div>
+                    </div>
+                    <div id="blazor-error-ui" Class="rz-my-12 rz-mx-auto">
+                        An unhandled error has occurred.
+                        <a href="" class="reload">Reload</a>
+                        <a class="dismiss">🗙</a>
+                    </div>
+                </div>
+            </RadzenBody>
+            <RadzenFooter>
+                <div class="container" style="align-content:center">
+                    <div class="row">
+                        <div class="col-md-6">
+                            &copy; Book My Lunch. All Rights Reserved.
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Other footer content or links can go here -->
+                        </div>
+                    </div>
+                </div>
+            </RadzenFooter>
+        </RadzenLayout>
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-    <script src="_framework/blazor.webassembly.js"></script>
-</body>
+        <script src="_framework/blazor.webassembly.js"></script>
+    </body>
 
 </html>

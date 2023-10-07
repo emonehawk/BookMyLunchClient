@@ -1,0 +1,56 @@
+﻿@page "/create"
+@inject CreateModel CreateModel
+
+// client create design
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <RadzenTemplateForm TItem="CreateModel" Data=@createModel Submit=@OnSubmit>
+                <RadzenFieldset Text="Personal information">
+                    <div class="row mb-5">
+                        <div class="col-md-4" style="align-self: center;">
+                            <RadzenLabel Text="First Name" />
+                        </div>
+                        <div class="col">
+                            <RadzenTextBox style="display: block" Name="FirstName" @bind-Value=@createModel.FirstName class="w-100" />
+                            <RadzenRequiredValidator Component="FirstName" Text="First name is required" Popup=true Style="position: absolute" />
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-md-4" style="align-self: center;">
+                            <RadzenLabel Text="Last Name" />
+                        </div>
+                        <div class="col">
+                            <RadzenTextBox style="display: block" Name="LastName" @bind-Value=@createModel.LastName class="w-100" />
+                            <RadzenRequiredValidator Component="LastName" Text="Last name is required" Popup=true Style="position: absolute" />
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-md-4" style="align-self: center;">
+                            <RadzenLabel Text="Email" />
+                        </div>
+                        <div class="col">
+                            <RadzenTextBox style="display: block" Name="Email" @bind-Value=@createModel.Email class="w-100" />
+                            <RadzenRequiredValidator Component="Email" Text="Email is required" Popup=true Style="position: absolute" />
+                            <RadzenEmailValidator Component="Email" Text="Provide a valid email address" Popup=true Style="position: absolute" />
+                        </div>
+                    </div>
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="Submit"></RadzenButton>
+                </RadzenFieldset>
+            </RadzenTemplateForm>
+        </div>
+    </div>
+</div>
+
+// client create code
+@code 
+{
+    CreateModel createModel = new CreateModel();
+
+    void OnSubmit(CreateModel createModel)
+    {
+        Console.WriteLine($"First Name: {createModel.FirstName}, Last Name: {createModel.LastName}");
+    }
+
+}
+
